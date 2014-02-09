@@ -247,5 +247,5 @@ int Print_Seq (char * filename, int size)
 
   free(sequence);
   fclose(fh);
-  return 1;
+  return sequence_size;
 }
