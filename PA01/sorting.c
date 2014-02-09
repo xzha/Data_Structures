@@ -130,7 +130,6 @@ int * Sequence_make(int size, int * sequence_size)
   int n = 0; 
   int array_size; // size of the sequence
   int * array; // the sequence
-  int i;
 
   //DETERMINE SIZE OF SEQUENCE
   while (power(3,n) < size)
@@ -149,36 +148,27 @@ int * Sequence_make(int size, int * sequence_size)
       return NULL;
     }
 
-  int k = 3;
-  int j = 1;
-  array[0] = 1; //BASE VALUES
-  array[1] = 2;
-  array[2] = 3;
-
-  //GENERATE THE REMAINING VALUES
-
-  //INITIALIZE ARRAY
-  for (i = 3; i < array_size; i ++)
+  //FILL IN SEQUENCE
+  int i; //position
+  int p = 0; //2
+  int q = 0; //3
+  int pp; //increment
+  int qq; //decrement
+  
+  for (i = 0; i < array_size; i ++)
     {
-      array[i] = 0;
-    }
-
-  //FILL IN ARRAY
-  for (i = 2; i < array_size; i ++)
-    {
-      if (array[i] == power(3,j))
+      pp = p;
+      qq = 0;
+      while (pp >= 0 && qq <= q)
 	{
-	  if ((i+k) < array_size)
-	    {
-	      array[i + k] = array[i] * 3;
-	    }
-	  k += 1;
-	  j++;
+	  array[i] = power(2,pp) * power(3,qq);
+	  i++;
+	  pp--;
+	  qq++;
 	}
-      else
-	{
-	  array[i] = array[i - k + 2] * 2;
-	}
+      i--;
+      p++;
+      q++;
     }
 
   return array;
