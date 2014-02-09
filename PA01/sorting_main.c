@@ -84,8 +84,8 @@ int main(int argc, char ** argv)
   sort_clock = (double)(sort_clock_end - sort_clock_begin)/ CLOCKS_PER_SEC;
 
   //SCREEN DUMP
-  printf("Number of comparisons:  %f\n", N_Comp);
-  printf("Number of moves:  %f\n", N_Move);
+  printf("Number of comparisons:  %le\n", N_Comp);
+  printf("Number of moves:  %le\n", N_Move);
   printf("I/O time:  %le\n", (double)total_clock);
   printf("Sorting time:  %le\n", (double)sort_clock);
 
