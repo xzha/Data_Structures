@@ -16,16 +16,20 @@ int main(int argc, char ** argv)
     }
 
   //INITIALIZE CLOCK
-  clock_t total_clock_begin;
-  clock_t total_clock_end;
-  clock_t total_clock;
+  clock_t input_clock_begin;
+  clock_t input_clock_end;
+  clock_t input_clock;
+  
+  clock_t output_clock_begin;
+  clock_t output_clock_end;
+  clock_t output_clock;
 
   clock_t sort_clock_begin;
   clock_t sort_clock_end;
   clock_t sort_clock;
 
   //GET INPUT
-  total_clock_begin = clock();
+  input_clock_begin = clock();
   int Size;
   long * Array_toSort;
 
@@ -34,7 +38,7 @@ int main(int argc, char ** argv)
     {
       return EXIT_FAILURE;
     }
-
+  input_clock_end = clock();
   //CHECK METHOD
   char * method = argv[1];
   double N_Comp = 0;
@@ -60,6 +64,7 @@ int main(int argc, char ** argv)
     }
 
   //SAVE FILE
+  output_clock_begin = clock();
   int save_array = 0; 
   save_array = Save_File(argv[4], Array_toSort, Size);
   if (save_array == 0)
@@ -77,16 +82,17 @@ int main(int argc, char ** argv)
       free(Array_toSort);
       return EXIT_FAILURE;
     }
-  total_clock_end = clock();
+  output_clock_end = clock();
 
   //CLOCK
-  total_clock = (double)(total_clock_end - total_clock_begin)/ CLOCKS_PER_SEC;
+  input_clock = (double)(input_clock_end - input_clock_begin)/ CLOCKS_PER_SEC;
+  output_clock = (double)(output_clock_end - output_clock_begin)/ CLOCKS_PER_SEC;
   sort_clock = (double)(sort_clock_end - sort_clock_begin)/ CLOCKS_PER_SEC;
 
   //SCREEN DUMP
   printf("Number of comparisons:  %le\n", N_Comp);
   printf("Number of moves:  %le\n", N_Move);
-  printf("I/O time:  %le\n", (double)total_clock);
+  printf("I/O time:  %le\n", (double)(input_clock + output_clock));
   printf("Sorting time:  %le\n", (double)sort_clock);
 
 

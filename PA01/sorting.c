@@ -72,12 +72,15 @@ void Shell_Insertion_Sort(long * array, int size, double *N_comp, double *N_Move
 	{
 	  temp_value = array[j];
 	  k = j;
+	  (*N_Move)++;
 	  while (k >= sequence[i] && array[k-sequence[i]] > temp_value)
 	    {
 	      array[k] = array[k - sequence[i]];
 	      k = k - sequence[i];
-	      (*N_comp)++;
+	      (*N_Move)++;
+	      (*N_comp)+=2;
 	    }
+	  (*N_comp) += 2;
 	  array[k] = temp_value;
 	  (*N_Move)++;
 	}
@@ -107,15 +110,15 @@ void Shell_Selection_Sort(long * array, int size, double *N_comp, double *N_Move
 	  min = j;
 	  for (k = j + sequence[i]; k < size; k+= sequence[i])
 	    {
+	      (*N_comp)++;
 	      if (array[k] < array[min])
 		{
-		  (*N_comp)++;
 		  min = k;
 		}
 	    }
 	  if (min != j)
 	    {
-	      (*N_Move)++;
+	      (*N_Move)+= 3;
 	      temp = array[j];
 	      array[j] = array[min];
 	      array[min] = temp;
