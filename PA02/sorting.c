@@ -1,0 +1,212 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "sorting.h"
+#include <unistd.h>
+
+Node * Node_create(long value)
+{
+  Node * head = malloc(sizeof(Node));
+  head -> value = value;
+  head -> next = NULL;
+ 
+  return head;
+}
+
+Node * Node_insert(Node * head, long value)
+{
+  if (head == NULL)
+    {
+      return Node_create(value);
+    }
+  head -> next = Node_insert(head->next, value);
+  return head;
+}
+
+void Node_clear(Node * head)
+{
+  Node * temp = head;
+
+  while(head != NULL)
+    {
+      temp = head -> next;
+      free(head);
+      head = temp;
+    }
+}
+
+Node * Load_File(char * Filename)
+{
+  FILE * fh;
+  Node * head = NULL;
+  long value;
+  int i = 0;
+  int g = 0;
+
+  fh = fopen(Filename, "r");
+  if (fh == NULL)
+    {
+      printf("ERROR\n");
+      printf("INVALID INPUT FILE!\n");
+      return NULL;
+    }
+
+  while (!feof(fh))
+    {
+      g = fscanf(fh,"%ld\n", &value);
+      head = Node_insert(head, value);
+      i++;
+    }
+
+  Node * dummy = malloc(sizeof(Node));
+  dummy -> value = i;
+  dummy -> next = head; 
+
+  if (g < 0)
+    {
+      printf("FSCANF ERROR\n");
+      fclose(fh);
+      return NULL;
+    }
+
+  fclose(fh);
+  return dummy;
+}
+
+/*Node * Node_mymalloc()
+{
+  arr_size = sysconf(_SC_PAGESIZE)/sizeof(Node);
+
+  if (unused_list == NULL)
+    {
+      Node * node_arr = malloc(sizeof(Node) * arr_size);
+      int i;
+      for (i = 0; i < arr_size -1; i ++)
+	{
+	  node_arr[i].next = &(node_arr[i+1]);
+	}
+      node_arr[i].next = NULL;
+
+      Array_list *arr = malloc(sizeof(Array_list));
+
+      arr->node_array = node_arr;
+      arr->next = arr_list;
+      arr_list = arr;
+
+      unused_list = &(node_arr[0]);
+    }
+
+  Node * node = unused_list;
+  unused_list = unused_list ->next;
+  return node; 
+  }*/
+
+Node * Shell_Sort(Node * fulllist)
+{
+  int sequence_size;
+  int size = fulllist -> value;
+  Node * head = fulllist -> next; 
+  int * sequence = Sequence_make(size, &sequence_size);
+
+  
+  
+  free(sequence);
+  return head;
+}
+
+int * Sequence_make(int size, int * sequence_size)
+{
+  int n = 0; 
+  int array_size; // size of the sequence
+  int * array; // the sequence
+
+  //DETERMINE SIZE OF SEQUENCE
+  while (power(3,n) < size)
+    {
+      n += 1;
+    }
+  n = n - 1;
+  array_size = ((n+1)*(n+2))/2;
+  *sequence_size = array_size;
+
+  //CREATE SEQUENCE
+  array = malloc(sizeof(int) * array_size);
+  if (array == NULL)
+    {
+      printf("MALLOC FAILED\n");
+      return NULL;
+    }
+
+  //FILL IN SEQUENCE
+  int i; //position
+  int p = 0; //2
+  int q = 0; //3
+  int pp; //increment
+  int qq; //decrement
+  
+  for (i = 0; i < array_size; i ++)
+    {
+      pp = p;
+      qq = 0;
+      while (pp >= 0 && qq <= q)
+	{
+	  array[i] = power(2,pp) * power(3,qq);
+	  i++;
+	  pp--;
+	  qq++;
+	}
+      i--;
+      p++;
+      q++;
+    }
+
+  return array;
+}
+
+long power(long base, int power)
+{
+  int i;
+  long sum = base;
+
+  //BASE CASES
+  if (power == 0)
+    {
+      return 1;
+    }
+  if (power == 1)
+    {
+      return base;
+    }
+
+  //POWER
+  for (i = 1; i < power; i ++)
+    {
+      sum = sum * base;
+    }
+  return sum;
+}
+
+
+int Save_File(char * Filename, Node * head)
+{
+  FILE * fh;
+  Node * temp = NULL;
+  int i = 0;
+
+  fh = fopen(Filename, "w");
+  if(fh == NULL)
+    {
+      printf("ERROR\n");
+      return 0;
+    }
+
+  temp = head;
+
+  while (temp != NULL)
+    {
+      fprintf(fh, "%ld\n", temp->value);
+      temp = temp->next;
+      i++;
+    }
+  fclose(fh);
+  return i;
+} 

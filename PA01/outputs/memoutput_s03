@@ -1,0 +1,101 @@
+==2481== Memcheck, a memory error detector
+==2481== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==2481== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==2481== Command: ./proj1 s testcases/100000.txt outputs/seq03_s.txt outputs/output03_s.txt
+==2481== Parent PID: 2422
+==2481== 
+--2481-- 
+--2481-- Valgrind options:
+--2481--    --suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp
+--2481--    --tool=memcheck
+--2481--    --leak-check=full
+--2481--    --verbose
+--2481--    --log-file=outputs/memoutput_s03
+--2481-- Contents of /proc/version:
+--2481--   Linux version 3.11.0-15-generic (buildd@roseapple) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu8) ) #25-Ubuntu SMP Thu Jan 30 17:22:01 UTC 2014
+--2481-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--2481-- Page sizes: currently 4096, max supported 4096
+--2481-- Valgrind library directory: /usr/lib/valgrind
+--2481-- Reading syms from /home/xzha/Documents/Github/ECE368/PA01/proj1
+--2481-- Reading syms from /lib/x86_64-linux-gnu/ld-2.17.so
+--2481--   Considering /lib/x86_64-linux-gnu/ld-2.17.so ..
+--2481--   .. CRC mismatch (computed 51e60a7a wanted 521e3c74)
+--2481--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
+--2481--   .. CRC is valid
+--2481--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
+--2481--   .. CRC is valid
+--2481-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--2481--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--2481--   .. CRC mismatch (computed c436d3d9 wanted 99aa3883)
+--2481--    object doesn't have a symbol table
+--2481--    object doesn't have a dynamic symbol table
+--2481-- Scheduler: using generic scheduler lock implementation.
+--2481-- Reading suppressions file: /usr/lib/valgrind/debian-libc6-dbg.supp
+--2481-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==2481== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2481-by-xzha-on-???
+==2481== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2481-by-xzha-on-???
+==2481== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2481-by-xzha-on-???
+==2481== 
+==2481== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==2481== don't want to do, unless you know exactly what you're doing,
+==2481== or are doing some strange experiment):
+==2481==   /usr/lib/valgrind/../../bin/vgdb --pid=2481 ...command...
+==2481== 
+==2481== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==2481==   /path/to/gdb ./proj1
+==2481== and then give GDB the following command
+==2481==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=2481
+==2481== --pid is optional if only one valgrind process is running
+==2481== 
+--2481-- REDIR: 0x4018f40 (strlen) redirected to 0x3806e491 (???)
+--2481-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--2481--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--2481--   .. CRC mismatch (computed 826470ab wanted a8b7e9f3)
+--2481--    object doesn't have a symbol table
+--2481-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--2481--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--2481--   .. CRC mismatch (computed d4fd7975 wanted b90a895a)
+--2481--    object doesn't have a symbol table
+--2481-- REDIR: 0x4018db0 (index) redirected to 0x4c2d480 (index)
+--2481-- REDIR: 0x4018e30 (strcmp) redirected to 0x4c2e560 (strcmp)
+--2481-- Reading syms from /lib/x86_64-linux-gnu/libc-2.17.so
+--2481--   Considering /lib/x86_64-linux-gnu/libc-2.17.so ..
+--2481--   .. CRC mismatch (computed 2c8ee98b wanted da4a7364)
+--2481--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
+--2481--   .. CRC is valid
+--2481--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
+--2481--   .. CRC is valid
+--2481-- REDIR: 0x4ec1980 (strcasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2481-- REDIR: 0x4ebdd10 (strnlen) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2481-- REDIR: 0x4ec3c50 (strncasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2481-- REDIR: 0x4ec0790 (memset) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2481-- REDIR: 0x4ec0740 (memcpy@GLIBC_2.2.5) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2481-- REDIR: 0x4ebf700 (__GI_strrchr) redirected to 0x4c2d2a0 (__GI_strrchr)
+--2481-- REDIR: 0x4eb7470 (malloc) redirected to 0x4c2a270 (malloc)
+--2481-- REDIR: 0x4eb7900 (free) redirected to 0x4c2b5a0 (free)
+==2481== 
+==2481== Process terminating with default action of signal 2 (SIGINT)
+==2481==    at 0x401220: Shell_Selection_Sort (in /home/xzha/Documents/Github/ECE368/PA01/proj1)
+==2481==    by 0x4007E4: main (in /home/xzha/Documents/Github/ECE368/PA01/proj1)
+==2481== 
+==2481== HEAP SUMMARY:
+==2481==     in use at exit: 800,264 bytes in 2 blocks
+==2481==   total heap usage: 3 allocs, 1 frees, 800,832 bytes allocated
+==2481== 
+==2481== Searching for pointers to 2 not-freed blocks
+==2481== Checked 878,920 bytes
+==2481== 
+==2481== LEAK SUMMARY:
+==2481==    definitely lost: 0 bytes in 0 blocks
+==2481==    indirectly lost: 0 bytes in 0 blocks
+==2481==      possibly lost: 0 bytes in 0 blocks
+==2481==    still reachable: 800,264 bytes in 2 blocks
+==2481==         suppressed: 0 bytes in 0 blocks
+==2481== Reachable blocks (those to which a pointer was found) are not shown.
+==2481== To see them, rerun with: --leak-check=full --show-reachable=yes
+==2481== 
+==2481== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+--2481-- 
+--2481-- used_suppression:      2 dl-hack3-cond-1
+==2481== 
+==2481== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)

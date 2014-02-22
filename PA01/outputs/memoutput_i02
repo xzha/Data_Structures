@@ -1,0 +1,89 @@
+==2434== Memcheck, a memory error detector
+==2434== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==2434== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==2434== Command: ./proj1 i testcases/10000.txt outputs/seq02_i.txt outputs/output02_i.txt
+==2434== Parent PID: 2422
+==2434== 
+--2434-- 
+--2434-- Valgrind options:
+--2434--    --suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp
+--2434--    --tool=memcheck
+--2434--    --leak-check=full
+--2434--    --verbose
+--2434--    --log-file=outputs/memoutput_i02
+--2434-- Contents of /proc/version:
+--2434--   Linux version 3.11.0-15-generic (buildd@roseapple) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu8) ) #25-Ubuntu SMP Thu Jan 30 17:22:01 UTC 2014
+--2434-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--2434-- Page sizes: currently 4096, max supported 4096
+--2434-- Valgrind library directory: /usr/lib/valgrind
+--2434-- Reading syms from /home/xzha/Documents/Github/ECE368/PA01/proj1
+--2434-- Reading syms from /lib/x86_64-linux-gnu/ld-2.17.so
+--2434--   Considering /lib/x86_64-linux-gnu/ld-2.17.so ..
+--2434--   .. CRC mismatch (computed 51e60a7a wanted 521e3c74)
+--2434--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
+--2434--   .. CRC is valid
+--2434--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
+--2434--   .. CRC is valid
+--2434-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--2434--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--2434--   .. CRC mismatch (computed c436d3d9 wanted 99aa3883)
+--2434--    object doesn't have a symbol table
+--2434--    object doesn't have a dynamic symbol table
+--2434-- Scheduler: using generic scheduler lock implementation.
+--2434-- Reading suppressions file: /usr/lib/valgrind/debian-libc6-dbg.supp
+--2434-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==2434== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2434-by-xzha-on-???
+==2434== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2434-by-xzha-on-???
+==2434== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2434-by-xzha-on-???
+==2434== 
+==2434== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==2434== don't want to do, unless you know exactly what you're doing,
+==2434== or are doing some strange experiment):
+==2434==   /usr/lib/valgrind/../../bin/vgdb --pid=2434 ...command...
+==2434== 
+==2434== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==2434==   /path/to/gdb ./proj1
+==2434== and then give GDB the following command
+==2434==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=2434
+==2434== --pid is optional if only one valgrind process is running
+==2434== 
+--2434-- REDIR: 0x4018f40 (strlen) redirected to 0x3806e491 (???)
+--2434-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--2434--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--2434--   .. CRC mismatch (computed 826470ab wanted a8b7e9f3)
+--2434--    object doesn't have a symbol table
+--2434-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--2434--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--2434--   .. CRC mismatch (computed d4fd7975 wanted b90a895a)
+--2434--    object doesn't have a symbol table
+--2434-- REDIR: 0x4018db0 (index) redirected to 0x4c2d480 (index)
+--2434-- REDIR: 0x4018e30 (strcmp) redirected to 0x4c2e560 (strcmp)
+--2434-- Reading syms from /lib/x86_64-linux-gnu/libc-2.17.so
+--2434--   Considering /lib/x86_64-linux-gnu/libc-2.17.so ..
+--2434--   .. CRC mismatch (computed 2c8ee98b wanted da4a7364)
+--2434--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
+--2434--   .. CRC is valid
+--2434--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
+--2434--   .. CRC is valid
+--2434-- REDIR: 0x4ec1980 (strcasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2434-- REDIR: 0x4ebdd10 (strnlen) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2434-- REDIR: 0x4ec3c50 (strncasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2434-- REDIR: 0x4ec0790 (memset) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2434-- REDIR: 0x4ec0740 (memcpy@GLIBC_2.2.5) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2434-- REDIR: 0x4ebf700 (__GI_strrchr) redirected to 0x4c2d2a0 (__GI_strrchr)
+--2434-- REDIR: 0x4eb7470 (malloc) redirected to 0x4c2a270 (malloc)
+--2434-- REDIR: 0x4eb7900 (free) redirected to 0x4c2b5a0 (free)
+--2434-- REDIR: 0x4ec7b20 (strchrnul) redirected to 0x4c300f0 (strchrnul)
+--2434-- REDIR: 0x4ebdc30 (__GI_strlen) redirected to 0x4c2d830 (__GI_strlen)
+==2434== 
+==2434== HEAP SUMMARY:
+==2434==     in use at exit: 0 bytes in 0 blocks
+==2434==   total heap usage: 6 allocs, 6 frees, 82,064 bytes allocated
+==2434== 
+==2434== All heap blocks were freed -- no leaks are possible
+==2434== 
+==2434== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+--2434-- 
+--2434-- used_suppression:      2 dl-hack3-cond-1
+==2434== 
+==2434== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
