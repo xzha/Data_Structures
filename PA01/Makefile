@@ -1,5 +1,5 @@
 GCC = gcc
-CFLAGS = -g -Werror -Wall -Wshadow -O3
+CFLAGS = -Werror -Wall -Wshadow -O3
 OBJS = sorting.o sorting_main.o
 HDRS = sorting.h
 TARGET = proj1
