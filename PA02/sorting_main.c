@@ -38,12 +38,9 @@ int main (int argc, char ** argv)
     }
   input_clock_end = clock();
 
-  //DEFINE HEAD OF LIST
-  head = fulllist -> next;
-
   //SORT
   sort_clock_begin = clock();
-  fulllist = Shell_Sort(fulllist);
+  head = Shell_Sort(fulllist);
   sort_clock_end = clock();
 
   //SAVE FILE
@@ -68,6 +65,6 @@ int main (int argc, char ** argv)
   printf("I/O time:  %le\n", (double)(input_clock + output_clock));
   printf("Sorting time:  %le\n", (double)sort_clock);
 
-  Node_clear(fulllist);
+  Node_clear(head);
   return EXIT_SUCCESS;
 }

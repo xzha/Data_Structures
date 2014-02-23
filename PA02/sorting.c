@@ -12,16 +12,6 @@ Node * Node_create(long value)
   return head;
 }
 
-Node * Node_insert(Node * head, long value)
-{
-  if (head == NULL)
-    {
-      return Node_create(value);
-    }
-  head -> next = Node_insert(head->next, value);
-  return head;
-}
-
 void Node_clear(Node * head)
 {
   Node * temp = head;
@@ -38,6 +28,7 @@ Node * Load_File(char * Filename)
 {
   FILE * fh;
   Node * head = NULL;
+  Node * current = NULL;
   long value;
   int i = 0;
   int g = 0;
@@ -49,11 +40,19 @@ Node * Load_File(char * Filename)
       printf("INVALID INPUT FILE!\n");
       return NULL;
     }
-
   while (!feof(fh))
     {
       g = fscanf(fh,"%ld\n", &value);
-      head = Node_insert(head, value);
+      if (head == NULL)
+	{
+	  head = Node_create(value);
+	  current = head;
+	}
+      else
+	{
+	  current -> next = Node_create(value);
+	  current = current -> next;
+	}
       i++;
     }
 
@@ -72,43 +71,65 @@ Node * Load_File(char * Filename)
   return dummy;
 }
 
-/*Node * Node_mymalloc()
-{
-  arr_size = sysconf(_SC_PAGESIZE)/sizeof(Node);
-
-  if (unused_list == NULL)
-    {
-      Node * node_arr = malloc(sizeof(Node) * arr_size);
-      int i;
-      for (i = 0; i < arr_size -1; i ++)
-	{
-	  node_arr[i].next = &(node_arr[i+1]);
-	}
-      node_arr[i].next = NULL;
-
-      Array_list *arr = malloc(sizeof(Array_list));
-
-      arr->node_array = node_arr;
-      arr->next = arr_list;
-      arr_list = arr;
-
-      unused_list = &(node_arr[0]);
-    }
-
-  Node * node = unused_list;
-  unused_list = unused_list ->next;
-  return node; 
-  }*/
-
 Node * Shell_Sort(Node * fulllist)
 {
-  int sequence_size;
+  //GENERATE SEQUENCE
   int size = fulllist -> value;
-  Node * head = fulllist -> next; 
+  int sequence_size;
   int * sequence = Sequence_make(size, &sequence_size);
+  if (sequence == NULL)
+    {
+      return NULL;
+    }
 
+  //MANAGE HEAD
+  Node * head = fulllist->next;
+  free(fulllist);
   
-  
+  //SORT
+  Node * front = head -> next;
+  Node * back = head;
+  Node * current = head;
+  Node * backcurrent = head;
+  int i;
+  int k;
+
+  for (i = sequence_size; i >= 0; i--)
+    {
+      while(front != NULL)
+	{
+	  backcurrent = head;
+	  current = head;
+	  k = 0;
+	  
+	  while (current->value < front->value && k < sequence[i])
+	    {
+	      backcurrent = current;
+	      current = current->next;
+	      k++;
+	    }
+	  if(current != front)
+	    {
+	      back->next = front->next;
+	      if(current==head)
+		{
+		  front->next = head;
+		  head = front;
+		}
+	      else
+		{
+		  backcurrent->next =front;
+		  front->next = current;
+		}
+	      front=back->next;
+	    }
+	  else
+	    {
+	      back = back->next;
+	      front=front->next;
+	    }
+	}
+    }
   free(sequence);
   return head;
 }

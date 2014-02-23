@@ -21,7 +21,6 @@ int Save_File(char * Filename, Node * list);
 Node * Shell_Sort(Node * list);
 int * Sequence_make (int Size, int * Sequence_Size);
 Node * Node_create(long value);
-Node * Node_insert(Node * head, long value);
 void Node_clear(Node * head);
 long power(long base, int power);
 
