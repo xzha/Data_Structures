@@ -23,6 +23,7 @@ int * Sequence_make (int Size, int * Sequence_Size);
 Node * Node_create(long value);
 void Node_clear(Node * head);
 long power(long base, int power);
+Node *List_traverse(Node * list, int k);
 
 
 //Node *Node_mymalloc();

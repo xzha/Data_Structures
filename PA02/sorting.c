@@ -87,51 +87,68 @@ Node * Shell_Sort(Node * fulllist)
   free(fulllist);
   
   //SORT
-  Node * front = head -> next;
+  Node * control = head;
+  Node * front = head;
   Node * back = head;
   Node * current = head;
   Node * backcurrent = head;
+  //Node * temp = NULL;
   int i;
-  int k;
+  int k = 0;
 
-  for (i = sequence_size; i >= 0; i--)
+  for(i = sequence_size - 1; i >= 0; i--)
     {
-      while(front != NULL)
+      //front = List_traverse(control,sequence[i]);
+      //back = List_traverse(control,sequence[i] - 1);
+
+      while (control != NULL && k < sequence[i])
 	{
-	  backcurrent = head;
-	  current = head;
-	  k = 0;
+ 
+	  k++;
+	  front = List_traverse(control, sequence[i]);
+	  back = List_traverse(control,sequence[i] - 1);
+
+	  while (front != NULL)
+	    { 
+	      printf("%d\n", sequence[i]);
+	      printf("front = %ld\tcurrent = %ld\nback = %ld\tbackcurrent = %ld\n", front->value, current->value, back->value, backcurrent -> value);
+
+
+	      front = List_traverse(front, sequence[i]);
+	      back = List_traverse(back, sequence[i]);
+		
+
+
+	    }
 	  
-	  while (current->value < front->value && k < sequence[i])
-	    {
-	      backcurrent = current;
-	      current = current->next;
-	      k++;
-	    }
-	  if(current != front)
-	    {
-	      back->next = front->next;
-	      if(current==head)
-		{
-		  front->next = head;
-		  head = front;
-		}
-	      else
-		{
-		  backcurrent->next =front;
-		  front->next = current;
-		}
-	      front=back->next;
-	    }
-	  else
-	    {
-	      back = back->next;
-	      front=front->next;
-	    }
+	  backcurrent = current;
+	  control = control -> next;
+	  current = control;
+	  
 	}
+	  
+
+	  control = head;
+	  current = control;
+	  backcurrent = current;
+	  k = 0;
+
+
+	
     }
   free(sequence);
   return head;
+}
+
+Node * List_traverse(Node * node, int k)
+{
+  Node * head = node;
+  while (k > 0 && head != NULL)
+    {
+      head = head -> next;
+      k--;
+    }
+  return head; 
 }
 
 int * Sequence_make(int size, int * sequence_size)
