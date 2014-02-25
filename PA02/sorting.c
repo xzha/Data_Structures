@@ -90,9 +90,14 @@ Node * Shell_Sort(Node * fulllist)
   Node * control = head;
   Node * front = head;
   Node * current = head;
-  //long temp = NULL;
+  Node * backsort = NULL;
+  Node * frontsort = NULL;
+  long temp = NULL;
+  //long temp2 = NULL;
   int i;
   int k = 0;
+  int g= 0;
+  //int j;
 
   for(i = sequence_size - 1; i >= 0; i--)
     {
@@ -102,47 +107,34 @@ Node * Shell_Sort(Node * fulllist)
 	  while (front != NULL)
 	    { 
 	      k++;
-	      printf("==============================================\n");
-	      printf("Sequence %d\n", sequence[i]);
-	      printf("Distance from current %d\n", k);
-	      printf("front = %ld\tcurrent = %ld\n", front->value, current->value);
-	      
-	      
+	      //printf("==============================================\n");
+	      //printf("Sequence %d\n", sequence[i]);
+	      //printf("Distance from current %d\n", k);
+	      //printf("front = %ld\tcurrent = %ld\n", front->value, current->value);
+	     
+	      frontsort = List_traverse(current, sequence[i]);
+	      backsort = current;
+
+	      //printf("frontsort = %ld\tbacksort = %ld\n",frontsort->value, backsort->value);
 
 	      
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	      while(backsort != front && front->value <= backsort->value && front->value >= frontsort->value)
+		{
+		  g++;
+		  temp = frontsort -> value;
+		  frontsort -> value = backsort -> value;
+		  backsort->value = temp;
+		  backsort = frontsort;
+		  frontsort=List_traverse(frontsort, sequence[i]);
+		}
+	      
+	      //printf("g= %d\n", g);
 
 
 	      
 	      
-	      
-
-
-
-
-
-
-
+	      g=0;
 	      front = List_traverse(front, sequence[i]);
 	    }
 	  control = control -> next;
@@ -168,6 +160,8 @@ Node * List_traverse(Node * node, int k)
     }
   return head; 
 }
+
+//CHANGE SEQUENCE MAKE
 
 int * Sequence_make(int size, int * sequence_size)
 {
