@@ -89,52 +89,70 @@ Node * Shell_Sort(Node * fulllist)
   //SORT
   Node * control = head;
   Node * front = head;
-  Node * back = head;
   Node * current = head;
-  Node * backcurrent = head;
-  //Node * temp = NULL;
+  //long temp = NULL;
   int i;
   int k = 0;
 
   for(i = sequence_size - 1; i >= 0; i--)
     {
-      //front = List_traverse(control,sequence[i]);
-      //back = List_traverse(control,sequence[i] - 1);
-
-      while (control != NULL && k < sequence[i])
+      while (control != NULL)
 	{
- 
-	  k++;
 	  front = List_traverse(control, sequence[i]);
-	  back = List_traverse(control,sequence[i] - 1);
-
 	  while (front != NULL)
 	    { 
-	      printf("%d\n", sequence[i]);
-	      printf("front = %ld\tcurrent = %ld\nback = %ld\tbackcurrent = %ld\n", front->value, current->value, back->value, backcurrent -> value);
+	      k++;
+	      printf("==============================================\n");
+	      printf("Sequence %d\n", sequence[i]);
+	      printf("Distance from current %d\n", k);
+	      printf("front = %ld\tcurrent = %ld\n", front->value, current->value);
+	      
+	      
+
+	      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	      
+	      
+	      
+
+
+
+
+
 
 
 	      front = List_traverse(front, sequence[i]);
-	      back = List_traverse(back, sequence[i]);
-		
-
-
 	    }
-	  
-	  backcurrent = current;
 	  control = control -> next;
 	  current = control;
-	  
+	  k = 0;
 	}
 	  
 
-	  control = head;
-	  current = control;
-	  backcurrent = current;
-	  k = 0;
-
-
-	
+      control = head;
+      current = control;
     }
   free(sequence);
   return head;
