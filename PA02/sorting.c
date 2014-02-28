@@ -12,6 +12,39 @@ Node * Node_create(long value)
   return head;
 }
 
+List * List_create(int gap)
+{
+  List * list = malloc(sizeof(List));
+  list -> node = NULL;
+  list -> next = NULL;
+  
+  List * current = list;
+
+  while (gap > 1)
+    {
+      current -> next = malloc(sizeof(List));
+      current -> node = NULL;
+      current = current -> next; 
+      gap--;
+    }
+
+  current -> node = NULL;
+  current -> next = NULL;
+  return list;
+}
+
+void List_destroy(List * list)
+{
+  List * temp = list;
+  
+  while (list != NULL)
+    {
+      temp = list -> next;
+      free(list);
+      list = temp;
+    }
+}
+
 void Node_clear(Node * head)
 {
   Node * temp = head;
@@ -73,168 +106,193 @@ Node * Load_File(char * Filename)
 
 Node * Shell_Sort(Node * fulllist)
 {
-  //GENERATE SEQUENCE
+  //GATHER SIZE
   int size = fulllist -> value;
-  int sequence_size;
-  int * sequence = Sequence_make(size, &sequence_size);
-  if (sequence == NULL)
-    {
-      return NULL;
-    }
 
   //MANAGE HEAD
   Node * head = fulllist->next;
   free(fulllist);
+
+  //SEQUENCE
+  int k = 1;
+  int p = 0;
+  int gap;
+  int count;
   
-  //SORT
-  Node * control = head;
-  Node * front = head;
-  Node * current = head;
-  Node * backsort = NULL;
-  Node * frontsort = NULL;
-  long temp = NULL;
-  //long temp2 = NULL;
-  int i;
-  int k = 0;
-  int g= 0;
-  //int j;
+  //SHELL SORT VARIABLES
+  Node * node = head;
+  List * lhead = NULL;
+  int choice = 0;
 
-  for(i = sequence_size - 1; i >= 0; i--)
+  //INITIALIZE GAP
+  while (k < size)
     {
-      while (control != NULL)
-	{
-	  front = List_traverse(control, sequence[i]);
-	  while (front != NULL)
-	    { 
-	      k++;
-	      //printf("==============================================\n");
-	      //printf("Sequence %d\n", sequence[i]);
-	      //printf("Distance from current %d\n", k);
-	      //printf("front = %ld\tcurrent = %ld\n", front->value, current->value);
-	     
-	      frontsort = List_traverse(current, sequence[i]);
-	      backsort = current;
-
-	      //printf("frontsort = %ld\tbacksort = %ld\n",frontsort->value, backsort->value);
-
-	      
-
-	      while(backsort != front && front->value <= backsort->value && front->value >= frontsort->value)
-		{
-		  g++;
-		  temp = frontsort -> value;
-		  frontsort -> value = backsort -> value;
-		  backsort->value = temp;
-		  backsort = frontsort;
-		  frontsort=List_traverse(frontsort, sequence[i]);
-		}
-	      
-	      //printf("g= %d\n", g);
-
-
-	      
-	      
-	      g=0;
-	      front = List_traverse(front, sequence[i]);
-	    }
-	  control = control -> next;
-	  current = control;
-	  k = 0;
-	}
-	  
-
-      control = head;
-      current = control;
+      k *= 3;
+      p += 1;
     }
-  free(sequence);
-  return head;
+
+  k /= 3;
+  p -= 1;
+
+  //TEMP VARIABLES
+  //Node * ntemp;
+
+  while (p >= 0)
+    {
+      gap = k;
+      count = p;
+
+      do
+	{
+	  //SHELL SORT
+	  lhead  = List_create(gap);
+	  if (gap == 729)
+	    {
+	      choice = 1;
+	    }
+	  lhead  = List_fill(node,lhead, &choice);
+	  node   = Node_reconstruct(node, lhead);
+	  List_destroy(lhead);
+      	  gap = (gap / 3) * 2;
+	  count--;
+	}while(count >= 0);
+      k /= 3;
+      p -= 1;
+    }
+
+  return node;
 }
 
-Node * List_traverse(Node * node, int k)
+Node * Node_reconstruct(Node * head, List * list)
 {
-  Node * head = node;
-  while (k > 0 && head != NULL)
+  List * lhead = list;
+  head = lhead -> node;
+  Node * current = head;
+
+  lhead -> node = lhead -> node -> next;
+  lhead = lhead -> next;
+
+  if (lhead == NULL)
     {
-      head = head -> next;
-      k--;
+      lhead = list;
     }
+
+  while (lhead -> node != NULL)
+    {
+      current -> next  = lhead -> node;
+      lhead -> node = lhead -> node -> next;
+      current = current -> next;
+      lhead = lhead -> next;
+      if (lhead == NULL)
+	{
+	  lhead = list;
+	}
+    }
+  current -> next = NULL;
+  
+  return head; 
+
+}
+
+List * List_fill(Node * node, List * list, int * count)
+{
+  List * lhead = list; 
+  Node * head = node;
+  Node * insert = NULL;
+
+  while (head != NULL)
+    {
+      insert = head;
+      head = head-> next;
+
+      if ((*count) % 2 == 0)
+	{
+	  lhead -> node = List_insertion_up(lhead->node, insert);
+	}
+      else
+	{
+	  lhead -> node = List_insertion_down(lhead->node, insert);
+	}
+
+
+      lhead = lhead -> next; 
+      if (lhead == NULL)
+	{
+	  lhead = list;
+	}
+    }
+
+  (*count)++;
+  return list;
+}
+
+Node * List_insertion_up(Node * head, Node * insert)
+{
+  Node * front = head;
+  Node * back = head;
+
+  if (head == NULL)
+    {
+      insert -> next = NULL;
+      return insert;
+    }
+  while (front != NULL && insert->value > front -> value)
+    {
+      back = front;
+      front = front -> next;
+    }
+  if(front == head)
+    {
+      insert -> next = head;
+      return insert;
+    }
+  else if (front == NULL)
+    {
+      back -> next = insert;
+      insert -> next = NULL;
+    }
+  else
+    {
+      back->next = insert;
+      insert -> next = front;
+    }
+
   return head; 
 }
 
-//CHANGE SEQUENCE MAKE
-
-int * Sequence_make(int size, int * sequence_size)
+Node * List_insertion_down(Node * head, Node * insert)
 {
-  int n = 0; 
-  int array_size; // size of the sequence
-  int * array; // the sequence
+  Node * front = head;
+  Node * back = head;
 
-  //DETERMINE SIZE OF SEQUENCE
-  while (power(3,n) < size)
+  if (head == NULL)
     {
-      n += 1;
+      insert -> next = NULL;
+      return insert;
     }
-  n = n - 1;
-  array_size = ((n+1)*(n+2))/2;
-  *sequence_size = array_size;
-
-  //CREATE SEQUENCE
-  array = malloc(sizeof(int) * array_size);
-  if (array == NULL)
+  while (front != NULL && insert->value < front -> value)
     {
-      printf("MALLOC FAILED\n");
-      return NULL;
+      back = front;
+      front = front -> next;
     }
-
-  //FILL IN SEQUENCE
-  int i; //position
-  int p = 0; //2
-  int q = 0; //3
-  int pp; //increment
-  int qq; //decrement
-  
-  for (i = 0; i < array_size; i ++)
+  if(front == head)
     {
-      pp = p;
-      qq = 0;
-      while (pp >= 0 && qq <= q)
-	{
-	  array[i] = power(2,pp) * power(3,qq);
-	  i++;
-	  pp--;
-	  qq++;
-	}
-      i--;
-      p++;
-      q++;
+      insert -> next = head;
+      return insert;
+    }
+  else if (front == NULL)
+    {
+      back -> next = insert;
+      insert -> next = NULL;
+    }
+  else
+    {
+      back->next = insert;
+      insert -> next = front;
     }
 
-  return array;
+  return head; 
 }
-
-long power(long base, int power)
-{
-  int i;
-  long sum = base;
-
-  //BASE CASES
-  if (power == 0)
-    {
-      return 1;
-    }
-  if (power == 1)
-    {
-      return base;
-    }
-
-  //POWER
-  for (i = 1; i < power; i ++)
-    {
-      sum = sum * base;
-    }
-  return sum;
-}
-
 
 int Save_File(char * Filename, Node * head)
 {
