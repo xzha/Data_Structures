@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "sorting.h"
-#include <unistd.h>
 
 Node * Node_create(long value)
 {
@@ -134,9 +133,6 @@ Node * Shell_Sort(Node * fulllist)
   k /= 3;
   p -= 1;
 
-  //TEMP VARIABLES
-  //Node * ntemp;
-
   while (p >= 0)
     {
       gap = k;
@@ -146,18 +142,24 @@ Node * Shell_Sort(Node * fulllist)
 	{
 	  //SHELL SORT
 	  lhead  = List_create(gap);
-	  if (gap == 729)
+	  if (gap == 729) //manual reset: end in ascending order
 	    {
 	      choice = 1;
 	    }
-	  lhead  = List_fill(node,lhead, &choice);
-	  node   = Node_reconstruct(node, lhead);
+	  lhead  = List_fill(node,lhead, &choice); //dummy list
+	  node   = Node_reconstruct(node, lhead); 
 	  List_destroy(lhead);
       	  gap = (gap / 3) * 2;
 	  count--;
 	}while(count >= 0);
       k /= 3;
       p -= 1;
+    }
+  
+  //MEASURE FOR SIZE < 729
+  if (node -> value > node -> next -> value)
+    {
+      node = Node_reverse(node);
     }
 
   return node;
@@ -194,6 +196,24 @@ Node * Node_reconstruct(Node * head, List * list)
 
 }
 
+Node * Node_reverse(Node * head)
+{
+  Node * back = NULL;
+  Node * current = head;
+  Node * front;
+  
+  while (current != NULL)
+    {
+      front = current -> next;
+      current -> next = back;
+      back = current;
+      current = front;
+    }
+  head = back;
+  return head;
+}
+
+
 List * List_fill(Node * node, List * list, int * count)
 {
   List * lhead = list; 
@@ -213,7 +233,6 @@ List * List_fill(Node * node, List * list, int * count)
 	{
 	  lhead -> node = List_insertion_down(lhead->node, insert);
 	}
-
 
       lhead = lhead -> next; 
       if (lhead == NULL)

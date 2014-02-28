@@ -21,5 +21,6 @@ List * List_fill(Node * head, List * list, int * count);
 Node * List_insertion_up(Node * head, Node * insert);
 Node * List_insertion_down(Node * head, Node * insert);
 Node * Node_reconstruct(Node * head, List * list);
+Node * Node_reverse(Node * head);
 void List_destroy(List * list);
 #endif
