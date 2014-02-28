@@ -1,6 +1,6 @@
 GCC = gcc
 CFLAGS = -Werror -Wall -Wshadow -O3
-OBJS = sorting.o sorting_main.o
+OBJS = sorting.o sorting_main.o mymalloc.o
 HDRS = sorting.h
 TARGET = proj2
 VALGRIND = valgrind --tool=memcheck --leak-check=full --verbose
@@ -10,7 +10,7 @@ VALGRIND = valgrind --tool=memcheck --leak-check=full --verbose
 proj2: $(OBJS) $(HDRS)
 	$(GCC) $(CFLAGS) $(OBJS) -o $@
 
-test: | test_1000i test_10000i test_100000i test_1000000i test_1000s test_10000s test_100000s test_1000000s
+test: | test1000 test10000 test100000 test1000000
 
 test1000: $(TARGET) | environment
 	./$(TARGET) testcases/1000.txt outputs/output01_i.txt

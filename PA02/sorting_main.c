@@ -55,16 +55,16 @@ int main (int argc, char ** argv)
     }
   output_clock_end = clock();
 
-  
   //CLOCK
-  input_clock = (double)(input_clock_end - input_clock_begin)/ CLOCKS_PER_SEC;
-  output_clock = (double)(output_clock_end - output_clock_begin)/ CLOCKS_PER_SEC;
-  sort_clock = (double)(sort_clock_end - sort_clock_begin)/ CLOCKS_PER_SEC;
+  input_clock = (float)(input_clock_end - input_clock_begin)/ CLOCKS_PER_SEC;
+  output_clock = (float)(output_clock_end - output_clock_begin)/ CLOCKS_PER_SEC;
+  sort_clock = (float)(sort_clock_end - sort_clock_begin)/ CLOCKS_PER_SEC;
 
   //SCREEN DUMP
-  printf("I/O time:  %le\n", (double)(input_clock + output_clock));
-  printf("Sorting time:  %le\n", (double)sort_clock);
+  printf("\nI/O time:  %le\n", (float)(input_clock + output_clock));
+  printf("Sorting time:  %le\n\n", (float)sort_clock);
 
   Node_clear(head);
+  destroyall();
   return EXIT_SUCCESS;
 }

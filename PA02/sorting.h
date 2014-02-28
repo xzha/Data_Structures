@@ -23,4 +23,28 @@ Node * List_insertion_down(Node * head, Node * insert);
 Node * Node_reconstruct(Node * head, List * list);
 Node * Node_reverse(Node * head);
 void List_destroy(List * list);
+
+
+//MYMALLOC
+typedef struct _Array_list
+{
+  Node * node_array;
+  struct _Array_list * next;
+}Array_list;
+
+typedef struct _List_list
+{
+  List * list_array;
+  struct _List_list * next;
+}List_list;
+
+Node * Node_mymalloc();
+void Node_myfree(Node * node);
+void Node_list_destroy(Array_list * list);
+
+List * List_mymalloc();
+void List_myfree(List * list);
+void List_list_destroy(List_list * list);
+void destroyall();
+
 #endif

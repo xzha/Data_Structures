@@ -4,7 +4,7 @@
 
 Node * Node_create(long value)
 {
-  Node * head = malloc(sizeof(Node));
+  Node * head = Node_mymalloc();
   head -> value = value;
   head -> next = NULL;
  
@@ -13,7 +13,7 @@ Node * Node_create(long value)
 
 List * List_create(int gap)
 {
-  List * list = malloc(sizeof(List));
+  List * list = List_mymalloc();
   list -> node = NULL;
   list -> next = NULL;
   
@@ -21,7 +21,7 @@ List * List_create(int gap)
 
   while (gap > 1)
     {
-      current -> next = malloc(sizeof(List));
+      current -> next = List_mymalloc();
       current -> node = NULL;
       current = current -> next; 
       gap--;
@@ -39,7 +39,7 @@ void List_destroy(List * list)
   while (list != NULL)
     {
       temp = list -> next;
-      free(list);
+      List_myfree(list);
       list = temp;
     }
 }
@@ -51,7 +51,7 @@ void Node_clear(Node * head)
   while(head != NULL)
     {
       temp = head -> next;
-      free(head);
+      Node_myfree(head);
       head = temp;
     }
 }
@@ -88,7 +88,7 @@ Node * Load_File(char * Filename)
       i++;
     }
 
-  Node * dummy = malloc(sizeof(Node));
+  Node * dummy = Node_mymalloc();
   dummy -> value = i;
   dummy -> next = head; 
 
@@ -110,7 +110,7 @@ Node * Shell_Sort(Node * fulllist)
 
   //MANAGE HEAD
   Node * head = fulllist->next;
-  free(fulllist);
+  Node_myfree(fulllist);
 
   //SEQUENCE
   int k = 1;
