@@ -28,8 +28,8 @@ int main (int argc, char ** argv)
 
   //GET INPUT
   input_clock_begin = clock();
-  Node * head = NULL;
-  Node * fulllist = NULL;
+  Node * head = NULL; //list without dummy node
+  Node * fulllist = NULL; //list with dummy node
   fulllist = Load_File(argv[1]);
   if (fulllist == NULL)
     {
@@ -40,7 +40,7 @@ int main (int argc, char ** argv)
 
   //SORT
   sort_clock_begin = clock();
-  head = Shell_Sort(fulllist);
+  head = Shell_Sort(fulllist); //shell sort
   sort_clock_end = clock();
 
   //SAVE FILE
@@ -56,13 +56,13 @@ int main (int argc, char ** argv)
   output_clock_end = clock();
 
   //CLOCK
-  input_clock = (float)(input_clock_end - input_clock_begin)/ CLOCKS_PER_SEC;
-  output_clock = (float)(output_clock_end - output_clock_begin)/ CLOCKS_PER_SEC;
-  sort_clock = (float)(sort_clock_end - sort_clock_begin)/ CLOCKS_PER_SEC;
+  input_clock = (input_clock_end - input_clock_begin)/ CLOCKS_PER_SEC;
+  output_clock =(output_clock_end - output_clock_begin)/ CLOCKS_PER_SEC;
+  sort_clock = (sort_clock_end - sort_clock_begin)/ CLOCKS_PER_SEC;
 
   //SCREEN DUMP
   printf("\nI/O time:  %le\n", (float)(input_clock + output_clock));
-  printf("Sorting time:  %le\n\n", (float)sort_clock);
+  printf("Sorting time:  %le\n\n", (float)(sort_clock));
 
   Node_clear(head);
   destroyall();
