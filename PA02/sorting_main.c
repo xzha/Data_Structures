@@ -33,6 +33,7 @@ int main (int argc, char ** argv)
   fulllist = Load_File(argv[1]);
   if (fulllist == NULL)
     {
+      destroyall();
       printf("ERROR LOADING INTO LINKED LIST\n");
       return EXIT_FAILURE;
     }
@@ -44,13 +45,21 @@ int main (int argc, char ** argv)
   sort_clock_end = clock();
 
   //SAVE FILE
+  Node * temp;
   output_clock_begin = clock();
   int save_node = 0;
   save_node = Save_File(argv[2], head);
   if (save_node == 0)
     {
+      while(head != NULL)
+	{
+	  temp = head->next;
+	  Node_myfree(head);
+	  head = temp;
+	}
       printf("ERROR SAVING\n");
       //FREE
+      destroyall();
       return EXIT_FAILURE;
     }
   output_clock_end = clock();

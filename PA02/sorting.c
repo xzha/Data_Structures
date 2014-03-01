@@ -91,9 +91,29 @@ Node * Load_File(char * Filename)
   Node * dummy = Node_mymalloc(); //store the amount of numbers read in from the file
   dummy -> value = i;
   dummy -> next = head; 
-
+  
+  Node * temp;
+  if (i < 2)
+    {
+      while(dummy != NULL)
+	{
+	  temp = dummy->next;
+	  Node_myfree(dummy);
+	  dummy = temp;
+	}
+      printf("NOTHING TO SORT\n");
+      fclose(fh);
+      return NULL;
+    }
+  
   if (g < 0)
     {
+      while(dummy != NULL)
+	{
+	  temp = dummy->next;
+	  Node_myfree(dummy);
+	  dummy = temp;
+	}
       printf("FSCANF ERROR\n");
       fclose(fh);
       return NULL;
