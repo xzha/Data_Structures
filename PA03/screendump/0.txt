@@ -1,0 +1,14 @@
+
+Preorder: 5 3 4 1 2 
+
+Inorder: 3 5 1 4 2 
+
+Postorder: 3 1 2 4 5 
+
+Width: 6.488700e+04
+Height: 9.299900e+04
+
+X-coordinate: 0.000000e+00
+Y-coordinate: 0.000000e+00
+
+Elapsed Time: 0.000000e+00
