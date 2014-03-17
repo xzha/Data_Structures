@@ -15,8 +15,8 @@ int main(int argc, const char * argv[])
     
     //GET INPUT
     Node * tree = NULL;
-    int blocks = 0;
-    int nodes = 0;
+    int blocks = 0; //number of rectangles (leaf)
+    int nodes = 0; //number of nodes (leaf + internal)
     tree = tree_load(argv[1], &blocks, &nodes);
     if (tree == NULL)
       {
@@ -117,8 +117,7 @@ void postorder_print(Node * tree, Node * root)
     return;
 }
 
-//INORDER
-//REMOVED TAIL RECURSION
+//INORDER - REMOVED TAIL RECURSION
 void inorder_print(Node * tree, Node * root)
 {
   while (root->rcnode != -1 && root->lcnode != -1)
@@ -131,8 +130,7 @@ void inorder_print(Node * tree, Node * root)
   return;
 }
 
-//PREORDER
-//REMOVED TAIL RECURSION
+//PREORDER - REMOVED TAIL RECURSION
 void preorder_print(Node * tree, Node * root)
 {
   while (root->rcnode != -1 && root->lcnode != -1)
@@ -147,8 +145,7 @@ void preorder_print(Node * tree, Node * root)
 
 //RECTANGLE COORDINATES: ASSUMING BIG RECTANGLE IS (0,0)
 //THE SMALLER RECTANGLES ARE BASED ON THE BIG RECTANGLE
-//PREORDER
-//REMOVED TAIL RECURSION
+//PREORDER - REMOVED TAIL RECURSION
 void tree_pack_coordinate(Node * tree, Node * root)
 {
   while(root->rcnode != -1 && root->lcnode != -1)

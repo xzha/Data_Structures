@@ -11,4 +11,4 @@ Height: 9.299900e+04
 X-coordinate: 0.000000e+00
 Y-coordinate: 0.000000e+00
 
-Elapsed Time: 0.000000e+00
+Elapsed Time: 2.000000e-02
