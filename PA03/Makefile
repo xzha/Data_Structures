@@ -10,27 +10,42 @@ VALGRIND = valgrind --tool=memcheck --leak-check=full --verbose
 proj3: $(OBJS) $(HDRS)
 	$(GCC) $(CFLAGS) $(OBJS) -o $@
 
-test: | test1000 test10000 test100000 test1000000
+test: | test0 test1 test2 test3 test4 test5 test6
+
+test0: $(TARGET) | environment
+	./$(TARGET) testcases/r0_flr.txt outputs/output_r0.txt > screendump/0.txt
+	$(VALGRIND) --log-file=outputs/memoutput_0 ./proj3 testcases/r0_flr.txt outputs/output_r0.txt > screendump/valgrind_0.txt
+	@bin/valgrind-checker.sh outputs/memoutput_0
 
 test1: $(TARGET) | environment
-	./$(TARGET) testcases/r6_flr.txt outputs/output_r6.txt
-	$(VALGRIND) --log-file=outputs/memoutput_6 ./proj3 testcases/r6_flr.txt outputs/output_r6.txt
+	./$(TARGET) testcases/r1_flr.txt outputs/output_r1.txt > screendump/1.txt
+	$(VALGRIND) --log-file=outputs/memoutput_1 ./proj3 testcases/r1_flr.txt outputs/output_r1.txt > screendump/valgrind_1.txt
+	@bin/valgrind-checker.sh outputs/memoutput_1
+
+test2: $(TARGET) | environment
+	./$(TARGET) testcases/r2_flr.txt outputs/output_r2.txt > screendump/2.txt
+	$(VALGRIND) --log-file=outputs/memoutput_2 ./proj3 testcases/r2_flr.txt outputs/output_r2.txt > screendump/valgrind_2.txt
+	@bin/valgrind-checker.sh outputs/memoutput_2 
+
+test3: $(TARGET) | environment
+	./$(TARGET) testcases/r3_flr.txt outputs/output_r3.txt > screendump/3.txt
+	$(VALGRIND) --log-file=outputs/memoutput_3 ./proj3 testcases/r3_flr.txt outputs/output_r3.txt > screendump/valgrind_3.txt
+	@bin/valgrind-checker.sh outputs/memoutput_3
+
+test4: $(TARGET) | environment
+	./$(TARGET) testcases/r4_flr.txt outputs/output_r4.txt > screendump/4.txt
+	$(VALGRIND) --log-file=outputs/memoutput_4 ./proj3 testcases/r4_flr.txt outputs/output_r4.txt > screendump/valgrind_4.txt
+	@bin/valgrind-checker.sh outputs/memoutput_4
+
+test5: $(TARGET) | environment
+	./$(TARGET) testcases/r5_flr.txt outputs/output_r5.txt > screendump/5.txt
+	$(VALGRIND) --log-file=outputs/memoutput_5 ./proj3 testcases/r5_flr.txt outputs/output_r5.txt > screendump/valgrind_5.txt
+	@bin/valgrind-checker.sh outputs/memoutput_5 
+
+test6: $(TARGET) | environment
+	./$(TARGET) testcases/r6_flr.txt outputs/output_r6.txt > screendump/6.txt
+	$(VALGRIND) --log-file=outputs/memoutput_6 ./proj3 testcases/r6_flr.txt outputs/output_r6.txt > screendump/valgrind_6.txt
 	@bin/valgrind-checker.sh outputs/memoutput_6 
-
-test10000: $(TARGET) | environment
-	./$(TARGET) testcases/10000.txt outputs/output02_i.txt
-	$(VALGRIND) --log-file=outputs/memoutput_i02 ./proj2 testcases/10000.txt outputs/output02_i.txt
-	@bin/valgrind-checker.sh outputs/memoutput_i02
-
-test100000: $(TARGET) | environment
-	./$(TARGET) testcases/100000.txt outputs/output03_i.txt
-	$(VALGRIND) --log-file=outputs/memoutput_i03 ./proj2 testcases/100000.txt outputs/output03_i.txt
-	@bin/valgrind-checker.sh outputs/memoutput_i03
-
-test1000000: $(TARGET) | environment
-	./$(TARGET) testcases/1000000.txt outputs/output04_i.txt
-	$(VALGRIND) --log-file=outputs/memoutput_i04 ./proj2 testcases/1000000.txt outputs/output04_i.txt
-	@bin/valgrind-checker.sh outputs/memoutput_i04
 
 environment:
 	@mkdir -p outputs
@@ -39,4 +54,4 @@ environment:
 	$(GCC) $(CFLAGS) -c $*.c
 
 clean:
-	rm -r $(TARGET) $(OBJS) outputs/*output* outputs/memoutput* outputs/seq*
+	rm -r $(TARGET) $(OBJS) outputs/output* outputs/memoutput_* screendump/*.txt screendump/valgrind*
