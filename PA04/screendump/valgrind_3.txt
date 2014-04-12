@@ -16,5 +16,5 @@ Elapsed Time: 1.000000e-02
 Best width:  8.618902e+06
 Best height: 2.728840e+06
 
-Elapsed time for re-rooting: 1.000000e-02
+Elapsed time for re-rooting: 0.000000e+00
 

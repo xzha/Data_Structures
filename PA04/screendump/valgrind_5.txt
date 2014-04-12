@@ -11,7 +11,7 @@ Height: 1.320092e+07
 X-coordinate: 0.000000e+00
 Y-coordinate: 1.411302e+06
 
-Elapsed Time: 1.000000e-02
+Elapsed Time: 3.000000e-02
 
 Best width:  2.286623e+07
 Best height: 1.365289e+07

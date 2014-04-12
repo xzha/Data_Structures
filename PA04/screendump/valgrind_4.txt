@@ -11,10 +11,10 @@ Height: 1.018544e+07
 X-coordinate: 0.000000e+00
 Y-coordinate: 7.323900e+05
 
-Elapsed Time: 1.000000e-02
+Elapsed Time: 2.000000e-02
 
 Best width:  9.515508e+06
 Best height: 1.018544e+07
 
-Elapsed time for re-rooting: 1.000000e-02
+Elapsed time for re-rooting: 0.000000e+00
 

@@ -83,12 +83,12 @@ int main(int argc, const char * argv[])
     printf("\nPostorder: ");
     postorder_print(tree, &root);
     printf("\n");
-    printf("\nWidth:  %le\n", tree[nodes].width);
+    printf("\nWidth: %le\n", tree[nodes].width);
     printf("Height: %le\n", tree[nodes].height);
     printf("\nX-coordinate: %le\n",tree[1].xcoord); //first element is the first rectangle
     printf("Y-coordinate: %le\n",tree[1].ycoord);
     printf("\nElapsed Time: %le\n", pack_clock);
-    printf("\nBest width:  %le\nBest height: %le\n",area.width, area.height);
+    printf("\nBest width: %le\nBest height: %le\n",area.width, area.height);
     printf("\nElapsed time for re-rooting: %le\n\n", reroot_clock);
 
     //SAVE FILE
