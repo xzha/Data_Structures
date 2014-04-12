@@ -49,10 +49,10 @@ int main(int argc, const char * argv[])
     
     pack_clock_end = clock();
     pack_clock = (double)(pack_clock_end - pack_clock_begin) / CLOCKS_PER_SEC;
+    
     //AREA
     Size area = {0,0}; //smallest area
     Size rootsize = {0,0}; //size of the other root child
-
 
     //REROOT
     reroot_clock_begin = clock();

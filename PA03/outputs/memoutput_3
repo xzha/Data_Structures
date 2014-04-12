@@ -1,89 +1,89 @@
-==2678== Memcheck, a memory error detector
-==2678== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
-==2678== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
-==2678== Command: ./proj3 testcases/r3_flr.txt outputs/output_r3.txt
-==2678== Parent PID: 2677
-==2678== 
---2678-- 
---2678-- Valgrind options:
---2678--    --suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp
---2678--    --tool=memcheck
---2678--    --leak-check=full
---2678--    --verbose
---2678--    --log-file=outputs/memoutput_3
---2678-- Contents of /proc/version:
---2678--   Linux version 3.11.0-18-generic (buildd@toyol) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu8) ) #32-Ubuntu SMP Tue Feb 18 21:11:14 UTC 2014
---2678-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
---2678-- Page sizes: currently 4096, max supported 4096
---2678-- Valgrind library directory: /usr/lib/valgrind
---2678-- Reading syms from /home/xzha/Documents/Github/ECE368/PA03/proj3
---2678-- Reading syms from /lib/x86_64-linux-gnu/ld-2.17.so
---2678--   Considering /lib/x86_64-linux-gnu/ld-2.17.so ..
---2678--   .. CRC mismatch (computed 51e60a7a wanted 521e3c74)
---2678--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
---2678--   .. CRC is valid
---2678--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
---2678--   .. CRC is valid
---2678-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
---2678--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
---2678--   .. CRC mismatch (computed c436d3d9 wanted 99aa3883)
---2678--    object doesn't have a symbol table
---2678--    object doesn't have a dynamic symbol table
---2678-- Scheduler: using generic scheduler lock implementation.
---2678-- Reading suppressions file: /usr/lib/valgrind/debian-libc6-dbg.supp
---2678-- Reading suppressions file: /usr/lib/valgrind/default.supp
-==2678== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2678-by-xzha-on-???
-==2678== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2678-by-xzha-on-???
-==2678== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2678-by-xzha-on-???
-==2678== 
-==2678== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==2678== don't want to do, unless you know exactly what you're doing,
-==2678== or are doing some strange experiment):
-==2678==   /usr/lib/valgrind/../../bin/vgdb --pid=2678 ...command...
-==2678== 
-==2678== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==2678==   /path/to/gdb ./proj3
-==2678== and then give GDB the following command
-==2678==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=2678
-==2678== --pid is optional if only one valgrind process is running
-==2678== 
---2678-- REDIR: 0x4018f40 (strlen) redirected to 0x3806e491 (???)
---2678-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
---2678--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
---2678--   .. CRC mismatch (computed 826470ab wanted a8b7e9f3)
---2678--    object doesn't have a symbol table
---2678-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
---2678--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
---2678--   .. CRC mismatch (computed d4fd7975 wanted b90a895a)
---2678--    object doesn't have a symbol table
---2678-- REDIR: 0x4018db0 (index) redirected to 0x4c2d480 (index)
---2678-- REDIR: 0x4018e30 (strcmp) redirected to 0x4c2e560 (strcmp)
---2678-- Reading syms from /lib/x86_64-linux-gnu/libc-2.17.so
---2678--   Considering /lib/x86_64-linux-gnu/libc-2.17.so ..
---2678--   .. CRC mismatch (computed 2c8ee98b wanted da4a7364)
---2678--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
---2678--   .. CRC is valid
---2678--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
---2678--   .. CRC is valid
---2678-- REDIR: 0x4ec1980 (strcasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---2678-- REDIR: 0x4ebdd10 (strnlen) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---2678-- REDIR: 0x4ec3c50 (strncasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---2678-- REDIR: 0x4ec0790 (memset) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---2678-- REDIR: 0x4ec0740 (memcpy@GLIBC_2.2.5) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---2678-- REDIR: 0x4ebf700 (__GI_strrchr) redirected to 0x4c2d2a0 (__GI_strrchr)
---2678-- REDIR: 0x4eb7470 (malloc) redirected to 0x4c2a270 (malloc)
---2678-- REDIR: 0x4ebdc30 (__GI_strlen) redirected to 0x4c2d830 (__GI_strlen)
---2678-- REDIR: 0x4eb7900 (free) redirected to 0x4c2b5a0 (free)
---2678-- REDIR: 0x4ec7b20 (strchrnul) redirected to 0x4c300f0 (strchrnul)
-==2678== 
-==2678== HEAP SUMMARY:
-==2678==     in use at exit: 0 bytes in 0 blocks
-==2678==   total heap usage: 3 allocs, 3 frees, 97,680 bytes allocated
-==2678== 
-==2678== All heap blocks were freed -- no leaks are possible
-==2678== 
-==2678== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
---2678-- 
---2678-- used_suppression:      2 dl-hack3-cond-1
-==2678== 
-==2678== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+==2980== Memcheck, a memory error detector
+==2980== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==2980== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==2980== Command: ./proj3 testcases/r3_flr.txt outputs/output_r3.txt
+==2980== Parent PID: 2979
+==2980== 
+--2980-- 
+--2980-- Valgrind options:
+--2980--    --suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp
+--2980--    --tool=memcheck
+--2980--    --leak-check=full
+--2980--    --verbose
+--2980--    --log-file=outputs/memoutput_3
+--2980-- Contents of /proc/version:
+--2980--   Linux version 3.11.0-18-generic (buildd@toyol) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu8) ) #32-Ubuntu SMP Tue Feb 18 21:11:14 UTC 2014
+--2980-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--2980-- Page sizes: currently 4096, max supported 4096
+--2980-- Valgrind library directory: /usr/lib/valgrind
+--2980-- Reading syms from /home/xzha/Documents/Github/ECE368/PA03/proj3
+--2980-- Reading syms from /lib/x86_64-linux-gnu/ld-2.17.so
+--2980--   Considering /lib/x86_64-linux-gnu/ld-2.17.so ..
+--2980--   .. CRC mismatch (computed 51e60a7a wanted 521e3c74)
+--2980--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
+--2980--   .. CRC is valid
+--2980--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
+--2980--   .. CRC is valid
+--2980-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--2980--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--2980--   .. CRC mismatch (computed c436d3d9 wanted 99aa3883)
+--2980--    object doesn't have a symbol table
+--2980--    object doesn't have a dynamic symbol table
+--2980-- Scheduler: using generic scheduler lock implementation.
+--2980-- Reading suppressions file: /usr/lib/valgrind/debian-libc6-dbg.supp
+--2980-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==2980== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2980-by-xzha-on-???
+==2980== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2980-by-xzha-on-???
+==2980== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2980-by-xzha-on-???
+==2980== 
+==2980== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==2980== don't want to do, unless you know exactly what you're doing,
+==2980== or are doing some strange experiment):
+==2980==   /usr/lib/valgrind/../../bin/vgdb --pid=2980 ...command...
+==2980== 
+==2980== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==2980==   /path/to/gdb ./proj3
+==2980== and then give GDB the following command
+==2980==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=2980
+==2980== --pid is optional if only one valgrind process is running
+==2980== 
+--2980-- REDIR: 0x4018f40 (strlen) redirected to 0x3806e491 (???)
+--2980-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--2980--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--2980--   .. CRC mismatch (computed 826470ab wanted a8b7e9f3)
+--2980--    object doesn't have a symbol table
+--2980-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--2980--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--2980--   .. CRC mismatch (computed d4fd7975 wanted b90a895a)
+--2980--    object doesn't have a symbol table
+--2980-- REDIR: 0x4018db0 (index) redirected to 0x4c2d480 (index)
+--2980-- REDIR: 0x4018e30 (strcmp) redirected to 0x4c2e560 (strcmp)
+--2980-- Reading syms from /lib/x86_64-linux-gnu/libc-2.17.so
+--2980--   Considering /lib/x86_64-linux-gnu/libc-2.17.so ..
+--2980--   .. CRC mismatch (computed 2c8ee98b wanted da4a7364)
+--2980--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
+--2980--   .. CRC is valid
+--2980--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
+--2980--   .. CRC is valid
+--2980-- REDIR: 0x4ec1980 (strcasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2980-- REDIR: 0x4ebdd10 (strnlen) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2980-- REDIR: 0x4ec3c50 (strncasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2980-- REDIR: 0x4ec0790 (memset) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2980-- REDIR: 0x4ec0740 (memcpy@GLIBC_2.2.5) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2980-- REDIR: 0x4ebf700 (__GI_strrchr) redirected to 0x4c2d2a0 (__GI_strrchr)
+--2980-- REDIR: 0x4eb7470 (malloc) redirected to 0x4c2a270 (malloc)
+--2980-- REDIR: 0x4ebdc30 (__GI_strlen) redirected to 0x4c2d830 (__GI_strlen)
+--2980-- REDIR: 0x4eb7900 (free) redirected to 0x4c2b5a0 (free)
+--2980-- REDIR: 0x4ec7b20 (strchrnul) redirected to 0x4c300f0 (strchrnul)
+==2980== 
+==2980== HEAP SUMMARY:
+==2980==     in use at exit: 0 bytes in 0 blocks
+==2980==   total heap usage: 3 allocs, 3 frees, 97,680 bytes allocated
+==2980== 
+==2980== All heap blocks were freed -- no leaks are possible
+==2980== 
+==2980== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+--2980-- 
+--2980-- used_suppression:      2 dl-hack3-cond-1
+==2980== 
+==2980== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
