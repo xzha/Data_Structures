@@ -1,5 +1,5 @@
-#ifndef PACKING_H
-#define PACKING_H
+#ifndef REROOT_H
+#define REROOT_H
 
 typedef struct _node{
     int thisnode;
