@@ -221,7 +221,7 @@ void river_build(int ** river, int size)
 		      configureboard(f, &k, bd, river, b[p].r + 2, b[p].c - 1, (2*size-2), weight);
                     }
                     
-		  change = river[b[p].r - 1][b[p].c] - weight; // change
+		  change = river[b[p].r - 1][b[p].c] - weight; 
                     
 		  if (change > 0)
                     {
@@ -387,13 +387,14 @@ void river_build(int ** river, int size)
   free(f);
 }
 
+//SET ALL ADJACENT BOARDS TO SAME WEIGHT
 void configureboard(Board * f, int * k, int bd, int ** river, int r, int c, int size, int weight)
 {
-  if (bd == 0)
+  if (bd == 0) // no boards
     {
       return;
     }
-  else if (bd == 2)
+  else if (bd == 2) // go down
     {
       int x = r + 1;
       while (x < size && river[x][c] == INT16_MAX)
@@ -403,7 +404,7 @@ void configureboard(Board * f, int * k, int bd, int ** river, int r, int c, int 
 	  x += 2;
         }
     }
-  else if (bd == 8)
+  else if (bd == 8) // go up
     {
       int y = r - 1;
         
@@ -414,7 +415,7 @@ void configureboard(Board * f, int * k, int bd, int ** river, int r, int c, int 
 	  y -= 2;
         }
     }
-  else
+  else // go up and down
     {
       int z = r + 1;
       while (z < size && river[z][c] == INT16_MAX)
@@ -434,6 +435,7 @@ void configureboard(Board * f, int * k, int bd, int ** river, int r, int c, int 
     }
 }
 
+//ADD NEXT MOVES TO THE ARRAY
 Board * addtof(Board * f, int * k, int r, int c)
 {
   int i = 0;
@@ -450,7 +452,7 @@ Board * addtof(Board * f, int * k, int r, int c)
     {
       if((f[i].r == r) && (f[i].c == c))
         {
-	  return f;
+	  return f; //NO REDUNDANT VALUES
         }
     }
   f[i].r = r;
@@ -460,6 +462,7 @@ Board * addtof(Board * f, int * k, int r, int c)
   return f;
 }
 
+//CHECK FOR BOARDS
 int checkboard(int ** river, int r, int c, int size)
 {
   int u = 8;
@@ -467,6 +470,7 @@ int checkboard(int ** river, int r, int c, int size)
   int d = 2;
   int nb = 0;
     
+  //FIRST ROW
   if (r == 0 && river[r+1][c] == INT16_MAX )
     {
       return d;
@@ -475,6 +479,8 @@ int checkboard(int ** river, int r, int c, int size)
     {
       return nb;
     }
+
+  //LAST ROW
   if (r == size && river[r -1][c] == INT16_MAX)
     {
       return u;
@@ -484,6 +490,7 @@ int checkboard(int ** river, int r, int c, int size)
       return nb;
     }
     
+  //MIDDLE
   if(river[r-1][c] == INT16_MAX && river[r+1][c] != INT16_MAX)
     {
       return u;
@@ -500,11 +507,13 @@ int checkboard(int ** river, int r, int c, int size)
   return nb;
 }
 
+//FIND MINIMUM VALUE
 int min(int x, int y)
 {
   return ((x < y) ? x : y);
 }
 
+//LOAD
 int ** river_load(const char * filename, int * size)
 {
   FILE * fh;
