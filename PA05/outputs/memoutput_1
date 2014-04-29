@@ -1,88 +1,88 @@
-==3239== Memcheck, a memory error detector
-==3239== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
-==3239== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
-==3239== Command: ./proj5 testcases/river.in1
-==3239== Parent PID: 3238
-==3239== 
---3239-- 
---3239-- Valgrind options:
---3239--    --suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp
---3239--    --tool=memcheck
---3239--    --leak-check=full
---3239--    --verbose
---3239--    --log-file=outputs/memoutput_1
---3239-- Contents of /proc/version:
---3239--   Linux version 3.11.0-18-generic (buildd@toyol) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu8) ) #32-Ubuntu SMP Tue Feb 18 21:11:14 UTC 2014
---3239-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
---3239-- Page sizes: currently 4096, max supported 4096
---3239-- Valgrind library directory: /usr/lib/valgrind
---3239-- Reading syms from /home/xzha/Documents/Github/ECE368/PA05/proj5
---3239-- Reading syms from /lib/x86_64-linux-gnu/ld-2.17.so
---3239--   Considering /lib/x86_64-linux-gnu/ld-2.17.so ..
---3239--   .. CRC mismatch (computed 51e60a7a wanted 521e3c74)
---3239--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
---3239--   .. CRC is valid
---3239--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
---3239--   .. CRC is valid
---3239-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
---3239--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
---3239--   .. CRC mismatch (computed c436d3d9 wanted 99aa3883)
---3239--    object doesn't have a symbol table
---3239--    object doesn't have a dynamic symbol table
---3239-- Scheduler: using generic scheduler lock implementation.
---3239-- Reading suppressions file: /usr/lib/valgrind/debian-libc6-dbg.supp
---3239-- Reading suppressions file: /usr/lib/valgrind/default.supp
-==3239== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-3239-by-xzha-on-???
-==3239== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-3239-by-xzha-on-???
-==3239== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-3239-by-xzha-on-???
-==3239== 
-==3239== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==3239== don't want to do, unless you know exactly what you're doing,
-==3239== or are doing some strange experiment):
-==3239==   /usr/lib/valgrind/../../bin/vgdb --pid=3239 ...command...
-==3239== 
-==3239== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==3239==   /path/to/gdb ./proj5
-==3239== and then give GDB the following command
-==3239==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=3239
-==3239== --pid is optional if only one valgrind process is running
-==3239== 
---3239-- REDIR: 0x4018f40 (strlen) redirected to 0x3806e491 (???)
---3239-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
---3239--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
---3239--   .. CRC mismatch (computed 826470ab wanted a8b7e9f3)
---3239--    object doesn't have a symbol table
---3239-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
---3239--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
---3239--   .. CRC mismatch (computed d4fd7975 wanted b90a895a)
---3239--    object doesn't have a symbol table
---3239-- REDIR: 0x4018db0 (index) redirected to 0x4c2d480 (index)
---3239-- REDIR: 0x4018e30 (strcmp) redirected to 0x4c2e560 (strcmp)
---3239-- Reading syms from /lib/x86_64-linux-gnu/libc-2.17.so
---3239--   Considering /lib/x86_64-linux-gnu/libc-2.17.so ..
---3239--   .. CRC mismatch (computed 2c8ee98b wanted da4a7364)
---3239--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
---3239--   .. CRC is valid
---3239--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
---3239--   .. CRC is valid
---3239-- REDIR: 0x4ec1980 (strcasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---3239-- REDIR: 0x4ebdd10 (strnlen) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---3239-- REDIR: 0x4ec3c50 (strncasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---3239-- REDIR: 0x4ec0790 (memset) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---3239-- REDIR: 0x4ec0740 (memcpy@GLIBC_2.2.5) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
---3239-- REDIR: 0x4ebf700 (__GI_strrchr) redirected to 0x4c2d2a0 (__GI_strrchr)
---3239-- REDIR: 0x4eb7470 (malloc) redirected to 0x4c2a270 (malloc)
---3239-- REDIR: 0x4eb7900 (free) redirected to 0x4c2b5a0 (free)
---3239-- REDIR: 0x4ec7b20 (strchrnul) redirected to 0x4c300f0 (strchrnul)
-==3239== 
-==3239== HEAP SUMMARY:
-==3239==     in use at exit: 0 bytes in 0 blocks
-==3239==   total heap usage: 15 allocs, 15 frees, 1,496 bytes allocated
-==3239== 
-==3239== All heap blocks were freed -- no leaks are possible
-==3239== 
-==3239== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
---3239-- 
---3239-- used_suppression:      2 dl-hack3-cond-1
-==3239== 
-==3239== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+==2697== Memcheck, a memory error detector
+==2697== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==2697== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==2697== Command: ./proj5 testcases/river.in1
+==2697== Parent PID: 2696
+==2697== 
+--2697-- 
+--2697-- Valgrind options:
+--2697--    --suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp
+--2697--    --tool=memcheck
+--2697--    --leak-check=full
+--2697--    --verbose
+--2697--    --log-file=outputs/memoutput_1
+--2697-- Contents of /proc/version:
+--2697--   Linux version 3.11.0-18-generic (buildd@toyol) (gcc version 4.8.1 (Ubuntu/Linaro 4.8.1-10ubuntu8) ) #32-Ubuntu SMP Tue Feb 18 21:11:14 UTC 2014
+--2697-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--2697-- Page sizes: currently 4096, max supported 4096
+--2697-- Valgrind library directory: /usr/lib/valgrind
+--2697-- Reading syms from /home/xzha/Documents/Github/ECE368/PA05/proj5
+--2697-- Reading syms from /lib/x86_64-linux-gnu/ld-2.17.so
+--2697--   Considering /lib/x86_64-linux-gnu/ld-2.17.so ..
+--2697--   .. CRC mismatch (computed 51e60a7a wanted 521e3c74)
+--2697--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
+--2697--   .. CRC is valid
+--2697--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.17.so ..
+--2697--   .. CRC is valid
+--2697-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--2697--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--2697--   .. CRC mismatch (computed c436d3d9 wanted 99aa3883)
+--2697--    object doesn't have a symbol table
+--2697--    object doesn't have a dynamic symbol table
+--2697-- Scheduler: using generic scheduler lock implementation.
+--2697-- Reading suppressions file: /usr/lib/valgrind/debian-libc6-dbg.supp
+--2697-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==2697== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-2697-by-xzha-on-???
+==2697== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-2697-by-xzha-on-???
+==2697== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-2697-by-xzha-on-???
+==2697== 
+==2697== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==2697== don't want to do, unless you know exactly what you're doing,
+==2697== or are doing some strange experiment):
+==2697==   /usr/lib/valgrind/../../bin/vgdb --pid=2697 ...command...
+==2697== 
+==2697== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==2697==   /path/to/gdb ./proj5
+==2697== and then give GDB the following command
+==2697==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=2697
+==2697== --pid is optional if only one valgrind process is running
+==2697== 
+--2697-- REDIR: 0x4018f40 (strlen) redirected to 0x3806e491 (???)
+--2697-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--2697--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--2697--   .. CRC mismatch (computed 826470ab wanted a8b7e9f3)
+--2697--    object doesn't have a symbol table
+--2697-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--2697--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--2697--   .. CRC mismatch (computed d4fd7975 wanted b90a895a)
+--2697--    object doesn't have a symbol table
+--2697-- REDIR: 0x4018db0 (index) redirected to 0x4c2d480 (index)
+--2697-- REDIR: 0x4018e30 (strcmp) redirected to 0x4c2e560 (strcmp)
+--2697-- Reading syms from /lib/x86_64-linux-gnu/libc-2.17.so
+--2697--   Considering /lib/x86_64-linux-gnu/libc-2.17.so ..
+--2697--   .. CRC mismatch (computed 2c8ee98b wanted da4a7364)
+--2697--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
+--2697--   .. CRC is valid
+--2697--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.17.so ..
+--2697--   .. CRC is valid
+--2697-- REDIR: 0x4ec1980 (strcasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2697-- REDIR: 0x4ebdd10 (strnlen) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2697-- REDIR: 0x4ec3c50 (strncasecmp) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2697-- REDIR: 0x4ec0790 (memset) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2697-- REDIR: 0x4ec0740 (memcpy@GLIBC_2.2.5) redirected to 0x4a25720 (_vgnU_ifunc_wrapper)
+--2697-- REDIR: 0x4ebf700 (__GI_strrchr) redirected to 0x4c2d2a0 (__GI_strrchr)
+--2697-- REDIR: 0x4eb7470 (malloc) redirected to 0x4c2a270 (malloc)
+--2697-- REDIR: 0x4eb7900 (free) redirected to 0x4c2b5a0 (free)
+--2697-- REDIR: 0x4ec7b20 (strchrnul) redirected to 0x4c300f0 (strchrnul)
+==2697== 
+==2697== HEAP SUMMARY:
+==2697==     in use at exit: 0 bytes in 0 blocks
+==2697==   total heap usage: 15 allocs, 15 frees, 1,496 bytes allocated
+==2697== 
+==2697== All heap blocks were freed -- no leaks are possible
+==2697== 
+==2697== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+--2697-- 
+--2697-- used_suppression:      2 dl-hack3-cond-1
+==2697== 
+==2697== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)

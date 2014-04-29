@@ -34,7 +34,7 @@ int main(int argc, const char * argv[])
             minimum = river[r][c];
         }
     }
-    printf("%d \n", minimum + 1);
+    printf("%d\n", minimum + 1);
     
     for (r = 0; r < (2*size) - 1; r ++)
     {
@@ -83,7 +83,7 @@ void river_build(int ** river, int size)
     k = 0;
     p = 0;
     int bd; //board direction
-    int change;
+    int change = 0;
     bool jane = true;
     
     while (jane)
@@ -381,7 +381,7 @@ void river_build(int ** river, int size)
             b[p].r = f[k].r;
             b[p].c = f[k].c;
             
-            printf("(%d, %d) ", b[p].r, b[p].c);
+            //printf("(%d, %d) ", b[p].r, b[p].c);
             count ++;
             if (b[p].c == size - 1 && b[p].r % 2 == 1)
             {
@@ -390,9 +390,8 @@ void river_build(int ** river, int size)
             p++;
         }
         
-        printf("\nCount = %d", count);
-        
-        printf("\n");
+        //printf("\nCount = %d", count);
+        //printf("\n");
         
         temp = p;
         p = 0;
@@ -400,7 +399,7 @@ void river_build(int ** river, int size)
         weight++;
         turns++;
         
-	  printf("TURNS = %d\n", turns);
+	/*printf("TURNS = %d\n", turns);
         for (r = 0; r < ((2*(size))-1); r ++)
         {
             for (c = 0; c < size; c ++)
@@ -425,7 +424,7 @@ void river_build(int ** river, int size)
             printf("\n");
         }
         printf("\n");
-        printf("\n");
+        printf("\n");*/
        
         
         
