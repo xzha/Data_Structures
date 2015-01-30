@@ -1,2 +1,2 @@
-#Data Structures
-Assignments: made in C
+#Data Structures Assignments 
+Made with: C
