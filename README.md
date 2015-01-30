@@ -1,1 +1,2 @@
-ECE 368 DATA STRUCTURE ASSIGNMENTS
+#ECE 
+Data Structures Assignments: written in C
